@@ -6,9 +6,9 @@ var s,
         html: $('html'),
         body: $('body'),
         instances: $(".instance"),
-        tempValue: $(".tempDetail-temp"),
-        tempNeedle: $(".tempBox-dial-needle"),
-        updateTimeHolder: $(".tempDetail-lastUpdate > .time")
+        dataValue: $(".instance-detail-temp"),
+        dataNeedle: $(".instance-box-dial-needle"),
+        updateTimeHolder: $(".instance-detail-lastUpdate > .time")
       },
 
       init: function() {
@@ -21,38 +21,41 @@ var s,
         for (var i = s.instances.length - 1; i >= 0; i--) {
           var instance = s.instances[i];
 
-          checker.getTemp($(instance), function() {
+          checker.getData($(instance), function() {
             setTimeout(function() {
-              checker.triggerTemp($(instance));
+              checker.triggerData($(instance));
             }, 200);
           });
         };
       },
 
-      getTemp: function(instance, callback) {
+      getData: function(instance, callback) {
         var mEvent = instance.data("event"),
             id = instance.data("id"),
-            token = instance.data("token");
+            token = instance.data("token"),
+            type = instance.data("type");
 
         var url = "https://api.particle.io/v1/devices/"+id+"/events/"+mEvent+"?access_token="+token;
         var stream = new EventSource(url);
         var lastUpdate;
 
         stream.onerror = function(e) {
-          s.body.prepend('<div class="errorMessage"></div>');
-          $(".errorMessage").html('This is taking longer than usual, let’s just <a href="#" onclick="location.reload();">refresh the page</a>.')
+          if (s.body.children(".errorMessage").length == 0) {
+            s.body.prepend('<div class="errorMessage"></div>');
+            $(".errorMessage").html('This is taking longer than usual, let’s just <a href="#" onclick="location.reload();">refresh the page</a>.')
+          };
         };
 
-        stream.addEventListener("temperature", function(e) {
+        stream.addEventListener(mEvent, function(e) {
           var message = JSON.parse(event.data);
 
-          var temp = message.data,
+          var data = message.data,
               time = message.published_at,
-              needlePos = checker.needlePosition(temp),
+              needlePos = checker.needlePosition(data, type),
               relTime = checker.timeRelative(time);
 
-          instance.find(s.tempValue).text(temp);
-          instance.find(s.tempNeedle).css("transform", "rotate("+needlePos+"deg)");
+          instance.find(s.dataValue).text(data);
+          instance.find(s.dataNeedle).css("transform", "rotate("+needlePos+"deg)");
           instance.find(s.updateTimeHolder).text(relTime);
           lastUpdate = time;
         });
@@ -65,7 +68,7 @@ var s,
         callback();
       },
 
-      triggerTemp: function(instance) {
+      triggerData: function(instance) {
         var trigger = instance.data("trigger"),
             id = instance.data("id"),
             token = instance.data("token");
@@ -78,9 +81,18 @@ var s,
         });
       },
 
-      needlePosition: function(temp) {
-        var step = 270/50;
-        var basePosition = temp*step;
+      needlePosition: function(data, type) {
+        switch (type) {
+          case "temperature":
+            var totalVal = 50;
+            break;
+          case "humidity":
+            var totalVal = 100;
+            break;
+        }
+
+        var step = 270/totalVal;
+        var basePosition = data*step;
         var realPosition = basePosition-45;
 
         return realPosition;

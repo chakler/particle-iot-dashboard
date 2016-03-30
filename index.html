@@ -9,22 +9,62 @@
 	<script>try{Typekit.load({ async: true });}catch(e){}</script>
 </head>
 <body>
-	<div class="instance" data-event="temperature" data-id="380042001547343433313338" data-token="9868eab355198c88316c282ec1ad4bff03671278" data-trigger="getTemp">
-		<h1 class="tempTitle">Bedroom</h1>
-		<div class="tempBox">
-			<div class="tempBox-meter"></div>
-			<div class="tempBox-dial">
-				<div class="tempBox-dial-needle"></div>
-				<div class="tempBox-dial-degree degree--0">0</div>
-				<div class="tempBox-dial-degree degree--12">12</div>
-				<div class="tempBox-dial-degree degree--25">25</div>
-				<div class="tempBox-dial-degree degree--37">37</div>
-				<div class="tempBox-dial-degree degree--50">50</div>
+	<div class="instance-container">
+		<div class="instance" data-type="temperature" data-event="temperature" data-id="380042001547343433313338" data-token="9868eab355198c88316c282ec1ad4bff03671278" data-trigger="getTemp">
+			<h1 class="instance-title">Bedroom Temperature</h1>
+			<div class="instance-box">
+				<div class="instance-box-meter"></div>
+				<div class="instance-box-dial">
+					<div class="instance-box-dial-needle"></div>
+					<div class="instance-box-dial-degree degree--1">0</div>
+					<div class="instance-box-dial-degree degree--2">12</div>
+					<div class="instance-box-dial-degree degree--3">25</div>
+					<div class="instance-box-dial-degree degree--4">37</div>
+					<div class="instance-box-dial-degree degree--5">50</div>
+				</div>
+			</div>
+			<div class="instance-detail">
+				<p class="instance-detail-temp">--</p>
+				<p class="instance-detail-lastUpdate">Last update was <span class="time"></span></p>
 			</div>
 		</div>
-		<div class="tempDetail">
-			<p class="tempDetail-temp">--</p>
-			<p class="tempDetail-lastUpdate">Last update was <span class="time"></span></p>
+
+		<div class="instance" data-type="temperature" data-event="feel" data-id="380042001547343433313338" data-token="9868eab355198c88316c282ec1ad4bff03671278" data-trigger="getTemp">
+			<h1 class="instance-title">Bedroom Feels Like</h1>
+			<div class="instance-box">
+				<div class="instance-box-meter"></div>
+				<div class="instance-box-dial">
+					<div class="instance-box-dial-needle"></div>
+					<div class="instance-box-dial-degree degree--1">0</div>
+					<div class="instance-box-dial-degree degree--2">12</div>
+					<div class="instance-box-dial-degree degree--3">25</div>
+					<div class="instance-box-dial-degree degree--4">37</div>
+					<div class="instance-box-dial-degree degree--5">50</div>
+				</div>
+			</div>
+			<div class="instance-detail">
+				<p class="instance-detail-temp">--</p>
+				<p class="instance-detail-lastUpdate">Last update was <span class="time"></span></p>
+			</div>
+		</div>
+
+		<div class="instance" data-type="humidity" data-event="humidity" data-id="380042001547343433313338" data-token="9868eab355198c88316c282ec1ad4bff03671278" data-trigger="getTemp">
+			<h1 class="instance-title">Bedroom Humidity</h1>
+			<div class="instance-box">
+				<div class="instance-box-meter"></div>
+				<div class="instance-box-dial">
+					<div class="instance-box-dial-needle"></div>
+					<div class="instance-box-dial-degree degree--1">0</div>
+					<div class="instance-box-dial-degree degree--2">25</div>
+					<div class="instance-box-dial-degree degree--3">50</div>
+					<div class="instance-box-dial-degree degree--4">75</div>
+					<div class="instance-box-dial-degree degree--5">100</div>
+				</div>
+			</div>
+			<div class="instance-detail">
+				<p class="instance-detail-temp">--</p>
+				<p class="instance-detail-lastUpdate">Last update was <span class="time"></span></p>
+			</div>
 		</div>
 	</div>
 	<script src="js/main.min.js"></script>
