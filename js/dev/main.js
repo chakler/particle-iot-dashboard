@@ -6,7 +6,7 @@ var s,
         html: $('html'),
         body: $('body'),
         instances: $(".instance"),
-        dataValue: $(".instance-detail-temp"),
+        dataValue: $(".instance-detail-value"),
         dataNeedle: $(".instance-box-dial-needle"),
         updateTimeHolder: $(".instance-detail-lastUpdate > .time")
       },

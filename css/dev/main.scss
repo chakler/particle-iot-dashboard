@@ -276,7 +276,7 @@ body {
 	z-index: 2;
 }
 
-.instance-detail-temp {
+.instance-detail-value {
 	line-height: 4rem;
 	font-size: 4 / 1.2 * 1rem;
 	font-weight: 700;
@@ -291,7 +291,7 @@ body {
 	}
 }
 
-.instance-detail-temp:after {
+.instance-detail-value:after {
 	.instance[data-type="temperature"] & {
 		content: "°c";
 	}

@@ -3,14 +3,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    connect: {
-      server: {
-        options: {
-          port: 8888
-        }
-      }
-    },
-
     sass: {
       build: {
         files: {
@@ -85,12 +77,11 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-notify');
 
-  grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('default', 'watch');
   grunt.registerTask('css', ['sass:build', 'postcss', 'notify:sass']);
   grunt.registerTask('js', ['uglify', 'notify:js']);
 
