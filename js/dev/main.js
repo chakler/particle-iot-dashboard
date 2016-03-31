@@ -7,7 +7,8 @@ var s,
         instances: $(".instance"),
         dataValue: $(".instance-detail-value"),
         dataNeedle: $(".instance-box-dial-needle"),
-        updateTimeHolder: $(".instance-detail-lastChange > .time")
+        updateTimeHolder: $(".instance-detail-lastChange > .time"),
+        triggerQueue: []
       },
 
       init: function() {
@@ -20,15 +21,18 @@ var s,
         for (var i = s.instances.length - 1; i >= 0; i--) {
           var instance = s.instances[i];
 
-          dashboard.getData($(instance), function() {
+          dashboard.getData($(instance));
+          dashboard.queueTriggers($(instance));
+
+          if (i == 0) {
             setTimeout(function() {
-              dashboard.triggerData($(instance));
+              dashboard.triggerData();
             }, 200);
-          });
+          };
         };
       },
 
-      getData: function(instance, callback) {
+      getData: function(instance) {
         var mEvent = instance.data("event"),
             id = instance.data("id"),
             token = instance.data("token"),
@@ -65,20 +69,30 @@ var s,
           instance.find(s.updateTimeHolder).text(relTime);
         }, 30000);
 
-        callback();
       },
 
-      triggerData: function(instance) {
+      queueTriggers: function(instance) {
         var trigger = instance.data("trigger"),
             id = instance.data("id"),
-            token = instance.data("token");
+            token = instance.data("token"),
+            url = "https://api.particle.io/v1/devices/"+id+"/"+trigger+"?access_token="+token;
 
-        $.ajax({
-          url: "https://api.particle.io/v1/devices/"+id+"/"+trigger+"?access_token="+token,
-          method: "POST",
-          data: { args : "get" },
-          dataType: "json"
-        });
+        if ($.inArray(url, s.triggerQueue) == -1) {
+          s.triggerQueue.push(url);
+        };
+      },
+
+      triggerData: function() {
+        var triggers = s.triggerQueue;
+
+        for (var i = triggers.length - 1; i >= 0; i--) {
+          $.ajax({
+            url: triggers[i],
+            method: "POST",
+            data: { args : "get" },
+            dataType: "json"
+          });
+        };
       },
 
       needlePosition: function(data, type) {
