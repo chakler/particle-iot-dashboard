@@ -1,6 +1,5 @@
 var s,
-    lastUpdate,
-    checker = {
+    dashboard = {
       
       settings : {
         html: $('html'),
@@ -21,9 +20,9 @@ var s,
         for (var i = s.instances.length - 1; i >= 0; i--) {
           var instance = s.instances[i];
 
-          checker.getData($(instance), function() {
+          dashboard.getData($(instance), function() {
             setTimeout(function() {
-              checker.triggerData($(instance));
+              dashboard.triggerData($(instance));
             }, 200);
           });
         };
@@ -37,6 +36,7 @@ var s,
 
         var url = "https://api.particle.io/v1/devices/"+id+"/events/"+mEvent+"?access_token="+token;
         var stream = new EventSource(url);
+        
         var lastUpdate;
 
         stream.onerror = function(e) {
@@ -51,8 +51,8 @@ var s,
 
           var data = message.data,
               time = message.published_at,
-              needlePos = checker.needlePosition(data, type),
-              relTime = checker.timeRelative(time);
+              needlePos = dashboard.needlePosition(data, type),
+              relTime = dashboard.timeRelative(time);
 
           instance.find(s.dataValue).text(data);
           instance.find(s.dataNeedle).css("transform", "rotate("+needlePos+"deg)");
@@ -61,7 +61,7 @@ var s,
         });
 
         setInterval(function() {
-          var relTime = checker.timeRelative(lastUpdate);
+          var relTime = dashboard.timeRelative(lastUpdate);
           instance.find(s.updateTimeHolder).text(relTime);
         }, 30000);
 
@@ -107,5 +107,5 @@ var s,
     }
 
 $(function() {
-  checker.init();
+  dashboard.init();
 });
