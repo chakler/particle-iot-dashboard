@@ -8,7 +8,7 @@ var s,
         instances: $(".instance"),
         dataValue: $(".instance-detail-value"),
         dataNeedle: $(".instance-box-dial-needle"),
-        updateTimeHolder: $(".instance-detail-lastUpdate > .time")
+        updateTimeHolder: $(".instance-detail-lastChange > .time")
       },
 
       init: function() {
