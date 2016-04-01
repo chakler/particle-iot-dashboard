@@ -105,7 +105,11 @@ body {
 	font-weight: 600;
 	line-height: 1rem;
 	font-size: 1 / 1.4 * 1rem;
-	padding: 3rem 2rem 0;
+	padding: 3rem 2rem 1rem;
+
+	@include breakpoint(pm) {
+		padding: 3rem 20px 1rem;	  
+	}
 }
 
 .instance-container {
@@ -124,12 +128,14 @@ body {
 }
 
 .instance {
-	margin: 0 30px 5rem;
-	
+	margin-bottom: 3rem;
+
 	@include breakpoint(l) {
+		margin: 0 30px 5rem;
 		width: 20rem;
 	}
 	@include breakpoint(xl) {
+		margin: 0 30px 5rem;
 		width: 20rem;
 	}	
 }
@@ -326,5 +332,24 @@ body {
 
 	a:hover {
 		font-weight: 700;
+	}
+}
+
+footer > p {
+	line-height: 1rem;
+	font-size: 1 / 1.6 * 1rem;
+	text-align: center;
+	color: darken($white, 25);
+}
+
+footer > p > a {
+	margin: 0 8px;
+	
+	&, &:link {
+		color: darken($white, 25);
+	}
+	
+	&:hover {
+		color: darken($white, 45);
 	}
 }
