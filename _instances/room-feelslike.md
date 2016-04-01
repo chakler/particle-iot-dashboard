@@ -1,6 +1,7 @@
 ---
 title: Room Feels Like
 type: temperature
+order: 3
 particle:
   event: feel
   deviceID: 380042001547343433313338

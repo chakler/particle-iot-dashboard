@@ -1,12 +1,7 @@
-# Site settings
 title: Particle IoT Dashboard
 description: An IoT dashboard made to work with Particle.
-baseurl: "" # the subpath of your site, e.g. /blog/
-# url: "http://yourdomain.com" # the base hostname & protocol for your site
+baseurl: ""
 exclude: ["node_modules", "bower_components", "Gruntfile.js", "package.json", "bower.json", "css/dev", "js/dev", "readme.md", "CNAME"]
-
-# Build settings
 markdown: kramdown
-
 collections:
 - instances

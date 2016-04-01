@@ -1,12 +1,10 @@
 ---
 layout: default
 ---
-{% assign data = site.data.[page.lang] %}
-{% assign info = site.data.info %}
-
 <div class="instance-container">
 
-  {% for instance in site.instances %}
+  {% assign instances = site.instances | sort:"order" %}
+  {% for instance in instances %}
     
     {% assign title = instance.title %}
     {% assign type = instance.type %}

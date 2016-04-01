@@ -1,6 +1,7 @@
 ---
 title: Room Humidity
 type: humidity
+order: 2
 particle:
   event: humidity
   deviceID: 380042001547343433313338

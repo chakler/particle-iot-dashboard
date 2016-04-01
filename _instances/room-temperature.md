@@ -1,6 +1,7 @@
 ---
 title: Room Temperature
 type: temperature
+order: 1
 particle:
   event: temperature
   deviceID: 380042001547343433313338

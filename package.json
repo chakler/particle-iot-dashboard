@@ -3,6 +3,10 @@
   "version": "0.2.0",
   "description": "An IoT dashboard made to work with Particle",
   "author": "Aceler Chua",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chakler/particle-iot-dashboard.git"
+  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "css-mqpacker": "^4.0.0",
