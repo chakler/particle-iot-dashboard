@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<div class="instance-container">
+
+  {% assign instances = site.instances | sort:"order" %}
+  {% for instance in instances %}
+    
+    {% assign title = instance.title %}
+    {% assign type = instance.type %}
+    {% assign event = instance.particle.event %}
+    {% assign id = instance.particle.deviceID %}
+    {% assign token = instance.particle.accessToken %}
+    {% assign trigger = instance.particle.triggerFunction %}
+
+    {% if type == "temperature" %}
+
+    <div class="instance" data-type="{{ type }}" data-event="{{ event }}" data-id="{{ id }}" data-token="{{ token }}" data-trigger="{{ trigger }}">
+      <h1 class="instance-title">{{ title }}</h1>
+      <div class="instance-box">
+        <div class="instance-box-meter"></div>
+        <div class="instance-box-dial">
+          <div class="instance-box-dial-needle"></div>
+          <div class="instance-box-dial-degree degree--1">0</div>
+          <div class="instance-box-dial-degree degree--2">12</div>
+          <div class="instance-box-dial-degree degree--3">25</div>
+          <div class="instance-box-dial-degree degree--4">37</div>
+          <div class="instance-box-dial-degree degree--5">50</div>
+        </div>
+      </div>
+      <div class="instance-detail">
+        <p class="instance-detail-value">--</p>
+        <p class="instance-detail-lastChange">Last change was <span class="time"></span></p>
+      </div>
+    </div>
+
+    {% elsif type == "humidity" %}
+
+    <div class="instance" data-type="{{ type }}" data-event="{{ event }}" data-id="{{ id }}" data-token="{{ token }}" data-trigger="{{ trigger }}">
+      <h1 class="instance-title">{{ title }}</h1>
+      <div class="instance-box">
+        <div class="instance-box-meter"></div>
+        <div class="instance-box-dial">
+          <div class="instance-box-dial-needle"></div>
+          <div class="instance-box-dial-degree degree--1">0</div>
+          <div class="instance-box-dial-degree degree--2">25</div>
+          <div class="instance-box-dial-degree degree--3">50</div>
+          <div class="instance-box-dial-degree degree--4">75</div>
+          <div class="instance-box-dial-degree degree--5">100</div>
+        </div>
+      </div>
+      <div class="instance-detail">
+        <p class="instance-detail-value">--</p>
+        <p class="instance-detail-lastChange">Last change was <span class="time"></span></p>
+      </div>
+    </div>
+
+    {% endif %}
+
+  {% endfor %}
+</div>

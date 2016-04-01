@@ -1,0 +1,7 @@
+title: Particle IoT Dashboard
+description: An IoT dashboard made to work with Particle.
+baseurl: ""
+exclude: ["node_modules", "bower_components", "Gruntfile.js", "package.json", "bower.json", "css/dev", "js/dev", "readme.md", "CNAME"]
+markdown: kramdown
+collections:
+- instances
