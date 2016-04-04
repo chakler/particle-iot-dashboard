@@ -64,10 +64,12 @@ var s,
           lastUpdate = time;
         });
 
-        setInterval(function() {
-          var relTime = dashboard.timeRelative(lastUpdate);
-          instance.find(s.updateTimeHolder).text(relTime);
-        }, 30000);
+        if (lastUpdate) {
+          setInterval(function() {
+            var relTime = dashboard.timeRelative(lastUpdate);
+            instance.find(s.updateTimeHolder).text(relTime);
+          }, 5000);
+        };
 
       },
 
