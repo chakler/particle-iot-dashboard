@@ -108,36 +108,63 @@ body {
 	padding: 3rem 2rem 1rem;
 
 	@include breakpoint(pm) {
-		padding: 3rem 20px 1rem;	  
+		padding: 2rem 20px 1rem;
 	}
 }
 
 .instance-container {
+	@include breakpoint(t) {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: stretch;
+	}
 	@include breakpoint(l) {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-around;
-		align-items: flex-end;
+		justify-content: center;
+		align-items: stretch;
 	}
 	@include breakpoint(xl) {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-around;
-		align-items: flex-end;
+		justify-content: center;
+		align-items: stretch;
 	}
 }
 
 .instance {
+	border: 0.1rem solid darken($white, 6);
+	border-radius: 1.5rem;
 	margin-bottom: 3rem;
+	padding: 2rem 1.5rem;
+	box-shadow: 8px 8px 22px darken($white, 5);
 
+	@include breakpoint(pm) {
+	  padding: 1.5rem 1.5rem;
+	  margin-bottom: 2rem;
+	}
+	@include breakpoint(t) {
+		display: flex;
+		align-content: flex-end;
+		flex-direction: column;
+		margin: 0 15px 3rem;
+		width: 20.8rem;
+	}
 	@include breakpoint(l) {
-		margin: 0 30px 5rem;
-		width: 20rem;
+		display: flex;
+		align-content: flex-end;
+		flex-direction: column;
+		margin: 0 30px 3rem;
+		width: 21.2rem;
 	}
 	@include breakpoint(xl) {
-		margin: 0 30px 5rem;
-		width: 20rem;
-	}	
+		display: flex;
+		align-content: flex-end;
+		flex-direction: column;
+		margin: 0 30px 3rem;
+		width: 21.2rem;
+	}
 }
 
 .instance-title {
@@ -146,36 +173,43 @@ body {
 	text-align: center;
 	font-weight: 700;
 	margin-bottom: 1rem;
+	align-self: flex-start;
+	width: 100%;
 
 	@include breakpoint(t) {
 	  	line-height: 3rem;
 		font-size: 3 / 1.2 * 1rem;
+		flex-grow: 1;
 	}
 	@include breakpoint(l) {
 	  	line-height: 3rem;
 		font-size: 3 / 1.2 * 1rem;
+		flex-grow: 1;
 	}
 	@include breakpoint(xl) {
 	  	line-height: 3rem;
 		font-size: 3 / 1.2 * 1rem;
+		flex-grow: 1;
 	}
 }
 
 .instance-box {
-	width: 20rem;
-	height: 20rem;
-	// max-width: 480px;
-	// max-height: 480px;
+	width: 18rem;
+	height: 18rem;
 	margin: 0 auto;
 	position: relative;
-
+	
+	@include breakpoint(t) {
+	  width: 17.6rem;
+	  height: 17.6rem;
+	}
 	@include breakpoint(lm) {
 	  width: 16rem;
 	  height: 16rem;
 	}
 	@include breakpoint(pm) {
-	  width: 14rem;
-	  height: 14rem;
+	  width: 12rem;
+	  height: 12rem;
 	}
 }
 
@@ -342,9 +376,11 @@ footer > p {
 	color: darken($white, 25);
 }
 
-footer > p > a {
+footer > .footer-link > a {
 	margin: 0 8px;
-	
+}
+
+footer > p > a {
 	&, &:link {
 		color: darken($white, 25);
 	}
