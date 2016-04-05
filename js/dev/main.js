@@ -51,7 +51,7 @@ var s,
         };
 
         stream.addEventListener(mEvent, function(e) {
-          var message = JSON.parse(event.data);
+          var message = JSON.parse(e.data);
 
           var data = message.data,
               time = message.published_at,
